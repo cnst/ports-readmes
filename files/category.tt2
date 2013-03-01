@@ -1,10 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<html><head><title>Ports in [% category %]</title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-CA" lang="en-CA">
+<head>
+<title>OpenBSD ports &there4; [% category %]</title>
+<meta name="viewport" content="width=480" />
+<style type='text/css'>
+/*body {max-width: 32em; margin: 0 auto; padding: 0.5em; border: 1px solid #eee;}*/
+#web_other {
+	float: right;
+	text-align: right;
+	list-style: none; padding: 2pt;
+	border: 1px dotted blue;
+	background: rgba(255,255,255,0.75);
+}
+@media print {#web_other {display: none;}}
+</style>
+</head>
 <body>
-<h1>Port in [% category %] category</h1>
+<h1><a href='/' style='color: blue;'>OpenBSD ports</a></h1>
+<h2>[% category %]</h2>
+
+<ul id='web_other'>
+<li><a href='http://www.openbsd.org/cgi-bin/cvsweb/ports/[% category | html %]/'>CVSweb</a></li>
+<li><a href='http://cvsweb.allbsd.org/cvsweb.cgi/ports/[% category | html %]/?cvsroot=openbsd'>allbsd</a></li>
+<li><a href='http://openports.se/[% category | html %]'>openports.se</a></li>
+</ul>
+
 <ul>
-[% FOREACH p IN ports %]
-<li><a href="[% p.url | url %]">[% p.name %]</a>
+[% FOREACH p IN ports -%]
+<li><a href="[% p.url | url %]">[% p.name %]</a></li>
 [% END %]
 </ul>
-</body></html>
+</body>
+</html>

@@ -1,83 +1,163 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<html><head><title>The [% path | html %] port</title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-CA" lang="en-CA">
+<head>
+<title>OpenBSD ports &there4; [% path | html %]</title>
+<meta name="viewport" content="width=640" />
+<style type='text/css'>
+/*body {max-width: 40em; margin: 0 auto; padding: 0.5em; border: 1px solid #eee;}*/
+#web_other {
+	float: right;
+	text-align: right;
+	list-style: none; padding: 2pt;
+	border: 1px dotted blue;
+	background: rgba(255,255,255,0.75);
+}
+@media print {#web_other {display: none;}}
+
+h1 {
+	font-size: 1em;
+	margin: 0;
+}
+h1:before {
+	content: "/usr/";
+}
+h1:after {
+	content: ":";
+}
+#Categories {
+	list-style: none;
+	padding: 0;
+	font-weight: bold;
+	margin: 0;
+}
+h2 {
+	font-size: 1em;
+	margin: 0 8em;
+}
+</style>
+</head>
 <body>
 
-<h1>The [% path | html %] port</h1>
+<h1><a href='/'>ports</a></h1>
 
-<H2>[% fullpkgname | html %] &ndash; [% comment | html %]</H2>
+<ul id='Categories'>
+[% FOREACH c IN category -%]
+<li><a href="[% c.url | url %]">[% c.name | html %]</a></li>
+[% END %]
+</ul>
 
-<H2>Description</H2>
+<h2>[% path | html %]</h2>
+
+<ul id='web_other'>[% path = path.remove(',.*') %]
+<li><a href='http://www.openbsd.org/cgi-bin/cvsweb/ports/[% path | html %]/'>CVSweb</a></li>
+<li><a href='http://cvsweb.allbsd.org/cvsweb.cgi/ports/[% path | html %]/?cvsroot=openbsd'>allbsd</a></li>
+<li><a href='http://openports.se/[% path | html %]'>openports.se</a></li>
+</ul>
+
+<h3>[% fullpkgname | html %] &ndash; [% comment | html %]</h3>
+
+<h3>Description</h3>
 
 <pre>
 [% descr %]
 </pre>
+<p>
 [% IF homepage %]
 WWW: <a href="[% homepage | url %]">[% homepage | html %]</a>
 [% ELSE %]
 No homepage
 [% END %]
+</p>
 
 <dl>
 [% IF permit_cd %]
-<dt>Distribution forbidden on cdroms<dd>
+<dt>Distribution forbidden on cdroms</dt>
+<dd>
 [% permit_cd | html %]
+</dd>
 [% END %]
 [% IF permit_ftp %]
-<dt>Distribution forbidden on ftp<dd>
+<dt>Distribution forbidden on ftp</dt>
+<dd>
 [% permit_ftp | html %]
+</dd>
 [% END %]
 [% IF multi %]
-<dt>Multi-packages<dd>
+<dt>Multi-packages</dt>
+<dd>
 [% FOREACH m IN multi %]
 <a href="[% m.url | url %]">[% m.name | html %]</a>
 [% END %]
+</dd>
 [% END %]
 [% IF only_for %]
-<dt>Only for arches<dd>
+<dt>Only for arches</dt>
+<dd>
 [% FOREACH a IN only_for %]
 [% a | html %]
 [% END %]
+</dd>
 [% END %]
 [% IF not_for %]
-<dt>Not for arches<dd>
+<dt>Not for arches</dt>
+<dd>
 [% FOREACH a IN not_for %]
 [% a | html %]
 [% END %]
+</dd>
 [% END %]
 [% IF broken %]
-<dt>Broken<dd>
+<dt>Broken</dt>
+<dd>
 [% FOREACH b IN broken %]
 [% IF b.arch %]
 on [% b.arch | html %]: 
 [% END %]
 [% b.text | html %]
 [% END %]
+</dd>
 [% END %]
-
-<dt>Categories:<dd>
+<dt>Categories:</dt>
+<dd>
 [% FOREACH c IN category %]
 <a href="[% c.url | url %]">[% c.name | html %]</a>
 [% END %]
+</dd>
 </dl>
 
-<H2>Library dependencies</H2>
+<h3>Library dependencies</h3>
+[% IF libdepends %]
 <ul>
 [% FOREACH d IN libdepends %]
-<li><a href="[% d.url | url %]">[% d.depends %]</a>
+<li><a href="[% d.url | url %]">[% d.depends %]</a></li>
 [% END %]
 </ul>
-<H2>Build dependencies</H2>
+[% ELSE %]
+<p>None</p>
+[% END %]
+
+<h3>Build dependencies</h3>
+[% IF builddepends %]
 <ul>
 [% FOREACH d IN builddepends %]
-<li><a href="[% d.url | url %]">[% d.depends %]</a>
+<li><a href="[% d.url | url %]">[% d.depends %]</a></li>
 [% END %]
 </ul>
+[% ELSE %]
+<p>None</p>
+[% END %]
 
-<H2>Run dependencies</H2>
+<h3>Run dependencies</h3>
+[% IF rundepends %]
 <ul>
 [% FOREACH d IN rundepends %]
-<li><a href="[% d.url | url %]">[% d.depends %]</a>
+<li><a href="[% d.url | url %]">[% d.depends %]</a></li>
 [% END %]
 </ul>
+[% ELSE %]
+<p>None</p>
+[% END %]
 
 </body></html>

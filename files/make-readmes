@@ -30,7 +30,9 @@ sub relative_url
 	my ($a, $b) = @_;
 	$a .= ".html";
 	$b .= ".html";
-	return File::Spec->abs2rel($a, dirname($b));
+	my $return = File::Spec->abs2rel($a, dirname($b));
+	$return =~ s/\.html//;
+	return $return;
 }
 
 my $db = DBI->connect("dbi:SQLite:dbname=$ENV{DATABASE}", '', '', {});
@@ -216,7 +218,7 @@ for my $c (sort keys %$cat) {
 	push @{$e->{categories}},
 	    {
 	    	name => $c,
-		url => "$c.html"
+		url => "$c"
 	    };
 }
 $template->process('main.tt2', $e, "index.html") or die;
