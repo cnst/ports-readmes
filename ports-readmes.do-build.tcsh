@@ -38,6 +38,12 @@ echo `idate` potentially stale:
 time find ${WRKBUILD} -type f -mmin +60
 echo
 
+echo `idate` just how stale:
+find ${WRKBUILD} -type f -mmin +60 | xargs stat -r | cut -d" " -f8,10,15 \
+    | awk '{print "echo `date -r" $2 " +%Y-%m-%dT%H:%M:%S` " $3 " " $1}' \
+    | sort -n -k4 | sh
+echo
+
 time
 uptime
 echo `idate` done.
