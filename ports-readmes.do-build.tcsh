@@ -20,7 +20,8 @@ mkdir -p ${WRKBUILD} || exit 2
 test ! -e ${SQLPORTS} && \
 ( mv sqlports-compact-*.tgz ${WRKBUILD}; \
 echo `idate` "wget:"; \
-time wget -6 "ftp://ftp.nluug.nl/pub/OpenBSD/snapshots/packages/`uname -m`/sqlports-compact-*.tgz" \
+time wget -6 --progress=dot:mega \
+"ftp://ftp.nluug.nl/pub/OpenBSD/snapshots/packages/`uname -m`/sqlports-compact-*.tgz" \
 -O ${SQLPORTS} ; echo; \
 echo `idate` "tar:"; \
 time tar -xzf ${SQLPORTS} share ; echo )
