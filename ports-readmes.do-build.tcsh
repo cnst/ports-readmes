@@ -35,6 +35,11 @@ uptime
 echo `idate` "perl make-readmes finished."
 echo
 
+echo `idate` generating sitemap.
+time ${LOCALBASE}/ports-readmes.sitemap.tcsh > ${WRKBUILD}/sitemap.new.xml
+mv ${WRKBUILD}/sitemap.new.xml ${WRKBUILD}/sitemap.xml
+echo
+
 echo `idate` potentially stale:
 time find ${WRKBUILD} -type f -mmin +60
 echo
