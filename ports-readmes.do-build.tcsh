@@ -38,6 +38,12 @@ echo
 echo `idate` generating sitemap.
 time ${LOCALBASE}/ports-readmes.sitemap.tcsh > ${WRKBUILD}/sitemap.new.xml
 mv ${WRKBUILD}/sitemap.new.xml ${WRKBUILD}/sitemap.xml
+echo -n "sitemap.xml: "
+fgrep '<loc>http://ports.su/' ${WRKBUILD}/sitemap.xml | wc -l
+time wget -6 --progress=dot:mega -O /dev/null -S \
+	"http://google.com/ping?sitemap=http://ports.su/sitemap.xml"
+time wget -6 --progress=dot:mega -O /dev/null -S \
+	"http://www.bing.com/ping?sitemap=http://ports.su/sitemap.xml"
 echo
 
 echo `idate` potentially stale:
