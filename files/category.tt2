@@ -5,6 +5,8 @@
 <head>
 <title>OpenBSD ports &there4; [% category %]</title>
 <meta name="viewport" content="width=480" />
+<link type="application/opensearchdescription+xml" rel="search"
+	href="http://ports.su/opensearch" title="ports.su"/>
 <style type='text/css'>
 /*body {max-width: 32em; margin: 0 auto; padding: 0.5em; border: 1px solid #eee;}*/
 #web_other {
