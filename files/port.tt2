@@ -55,6 +55,7 @@ h2 {
 <ul id='web_other'>[% path = path.remove(',.*') %]
 <li><a href='http://www.openbsd.org/cgi-bin/cvsweb/ports/[% path | html %]/'>CVSweb</a></li>
 <li><a href='http://cvsweb.allbsd.org/cvsweb.cgi/ports/[% path | html %]/?cvsroot=openbsd'>allbsd</a></li>
+<li><a href='http://anoncvs.estpak.ee/cgi-bin/cgit/openbsd-ports/tree/[% path | html %]'>cgit</a></li>
 <li><a href='http://openports.se/[% path | html %]'>openports.se</a></li>
 <li><a href='https://github.com/jasperla/openbsd-wip/tree/master/[% path | html %]'>ports-wip</a></li>
 </ul>
