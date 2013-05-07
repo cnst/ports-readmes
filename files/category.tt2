@@ -36,5 +36,6 @@
 <li><a href="[% p.url | url %]">[% p.name %]</a></li>
 [% END %]
 </ul>
+<div><img src="//mc.yandex.ru/watch/21195115" style="position:absolute; left:-9999px;" alt="" /></div>
 </body>
 </html>

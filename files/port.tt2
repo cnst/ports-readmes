@@ -164,4 +164,5 @@ on [% b.arch | html %]:
 <p>None</p>
 [% END %]
 
+<div><img src="//mc.yandex.ru/watch/21195115" style="position:absolute; left:-9999px;" alt="" /></div>
 </body></html>
