@@ -5,6 +5,8 @@
 <head>
 <title>OpenBSD ports &there4; categories</title>
 <meta name="viewport" content="width=480" />
+<meta name='description' content='OpenBSD ports tree and packages collection, based on sqlports and ports-readmes.  Browse with any browser (by category) and full-text search of applications.' />
+<meta name='keywords' content='OpenBSD ports tree, packages collection, application software, pkg, pkg_add, sqlports, ports-readmes' />
 <link type="application/opensearchdescription+xml" rel="search"
 	href="http://ports.su/opensearch" title="ports.su"/>
 </head>
