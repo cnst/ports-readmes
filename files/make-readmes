@@ -24,6 +24,7 @@ use File::Path qw(make_path);
 use File::Basename;
 use File::Spec;
 use Data::Dumper;
+use POSIX;
 
 sub relative_url
 {
@@ -138,9 +139,12 @@ my $cat = {};
 
 my @depends = (qw(libdepends rundepends builddepends regressdepends));
 
+my $total_packages = 0;
+
 $info_req->execute;
 while ($info_req->fetch) {
 	print "+++$path\n";
+	$total_packages ++;
 	my $e = { path => $path,
 		comment => $comment,
 		homepage => $homepage,
@@ -198,8 +202,11 @@ while ($info_req->fetch) {
 	$template->process('port.tt2', $e, "$e->{path}.html") or die;
 }
 
+my $total_categories = 0;
+
 print "Generating category indexes\n";
 while (my ($c, $h) = each %$cat) {
+	$total_categories ++;
 	my $e = { category => $c};
 	for my $pkgname (sort keys %$h) {
 		my $p = $h->{$pkgname};
@@ -221,4 +228,14 @@ for my $c (sort keys %$cat) {
 		url => "$c"
 	    };
 }
+$e->{total_packages} = $total_packages;
+$e->{total_categories} = $total_categories;
+$e->{arch} = $ENV{MACHTYPE};
+my $snapshot = (stat($ENV{DATABASE}))[9];
+$e->{snapshot} =
+    POSIX::strftime("%A, <span title='%G-W%V-%u'>%Y-%m-%d</span>T%HZ",
+		    gmtime($snapshot));
+$e->{today} =
+    POSIX::strftime("%Y-%m-%dT%HZ (%G-W%V-%u)",
+		    gmtime);
 $template->process('main.tt2', $e, "index.html") or die;
