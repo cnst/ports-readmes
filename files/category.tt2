@@ -23,6 +23,7 @@
 <h1><a href='/' style='color: blue;'>OpenBSD ports</a></h1>
 <h2>[% category %]</h2>
 
+<!--noindex-->
 <ul id='web_other'>
 <li><a href='http://www.openbsd.org/cgi-bin/cvsweb/ports/[% category | html %]/'>CVSweb</a></li>
 <li><a href='http://cvsweb.allbsd.org/cvsweb.cgi/ports/[% category | html %]/?cvsroot=openbsd'>allbsd</a></li>
@@ -30,6 +31,7 @@
 <li><a href='http://openports.se/[% category | html %]'>openports.se</a></li>
 <li><a href='https://github.com/jasperla/openbsd-wip/tree/master/[% category | html %]'>ports-wip</a></li>
 </ul>
+<!--/noindex-->
 
 <ul>
 [% FOREACH p IN ports -%]

@@ -52,6 +52,7 @@ h2 {
 
 <h2>[% path | html %]</h2>
 
+<!--noindex-->
 <ul id='web_other'>[% path = path.remove(',.*') %]
 <li><a href='http://www.openbsd.org/cgi-bin/cvsweb/ports/[% path | html %]/'>CVSweb</a></li>
 <li><a href='http://cvsweb.allbsd.org/cvsweb.cgi/ports/[% path | html %]/?cvsroot=openbsd'>allbsd</a></li>
@@ -59,6 +60,7 @@ h2 {
 <li><a href='http://openports.se/[% path | html %]'>openports.se</a></li>
 <li><a href='https://github.com/jasperla/openbsd-wip/tree/master/[% path | html %]'>ports-wip</a></li>
 </ul>
+<!--/noindex-->
 
 <h3>[% fullpkgname | html %] &ndash; [% comment | html %]</h3>
 
