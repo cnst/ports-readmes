@@ -22,9 +22,16 @@
 [% END %]
 </ul>
 <p>
-As of [% snapshot %] snapshot, the
-total number of OpenBSD/[% arch %] packages is [% total_packages %],
-dispersed across [% total_categories %] categories as above.
+[% total_packages %] packages
+dispersed across [% total_categories %] categories above.
+<br/>
+<small>
+<!--Data based on the
+<a href="databases/sqlports,-compact">sqlports-compact</a>
+package of the-->
+OpenBSD/[% arch %] snapshot
+from [% snapshot %].
+</small>
 </p>
 <hr/>
 <p>
