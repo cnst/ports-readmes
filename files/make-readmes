@@ -208,7 +208,9 @@ print "Generating category indexes\n";
 while (my ($c, $h) = each %$cat) {
 	$total_categories ++;
 	my $e = { category => $c};
+	my $pkg_in_cat = 0;
 	for my $pkgname (sort keys %$h) {
+		$pkg_in_cat ++;
 		my $p = $h->{$pkgname};
 		push @{$e->{ports}},
 		    {
@@ -216,6 +218,7 @@ while (my ($c, $h) = each %$cat) {
 			url => relative_url($p, $c)
 		    };
 	}
+	$e->{pkg_in_cat} = $pkg_in_cat;
 	$template->process('category.tt2', $e, "$c.html") or die;
 }
 
