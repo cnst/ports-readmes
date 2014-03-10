@@ -36,7 +36,9 @@ sub relative_url
 	return $return;
 }
 
-my $db = DBI->connect("dbi:SQLite:dbname=$ENV{DATABASE}", '', '', {});
+#my $db = DBI->connect("dbi:SQLite:dbname=$ENV{DATABASE}", '', '', {});
+my $db = DBI->connect("dbi:SQLite:dbname=:memory:", '', '', {});
+$db->sqlite_backup_from_file($ENV{DATABASE});
 
 my $outputdir = $ENV{OUTPUTDIR};
 my $template = Template->new(
