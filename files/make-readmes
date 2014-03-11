@@ -40,6 +40,20 @@ sub relative_url
 my $db = DBI->connect("dbi:SQLite:dbname=:memory:", '', '', {});
 $db->sqlite_backup_from_file($ENV{DATABASE});
 
+# Handle lang/{erlang,mono,node} being both a port and a category.
+# For details of the issue, see a post on ports@openbsd from 2013-11-06.
+#
+# * sqlports,-main, partial query:
+#	UPDATE categories	SET fullpkgpath = fullpkgpath || ',pkg'
+#	WHERE fullpkgpath IN	(SELECT value	FROM categories)
+#
+# * sqlports,-compact, covers everything (pkgpath appears unused in our script):
+$db->do(qq{
+	UPDATE paths	SET fullpkgpath = fullpkgpath || ',pkg'
+	WHERE fullpkgpath IN	(SELECT value FROM categorykeys)	AND
+		id = pkgpath AND id = canonical
+});
+
 my $outputdir = $ENV{OUTPUTDIR};
 my $template = Template->new(
 	{
